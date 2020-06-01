@@ -11,9 +11,9 @@ def relu_backprop(in_sensitivity, in_):
       output paramter:
           out_sensitivity : the sensitivity to the lower layer, shape: same as in_sensitivity
     '''
-    # TODO
-
     # begin answer
+    relu_derivative = np.where(in_ > 0, 1, 0)
+    out_sensitivity = relu_derivative * in_sensitivity
     # end answer
     return out_sensitivity
 

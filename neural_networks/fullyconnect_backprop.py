@@ -22,9 +22,13 @@ def fullyconnect_backprop(in_sensitivity, in_, weight):
     Note : remember to divide by number of images in the calculation of gradients.
     '''
 
-    # TODO
+
 
     # begin answer
+    numOfImages = in_.shape[0]
+    weight_grad = np.matmul(in_.T, in_sensitivity) / numOfImages
+    bias_grad = np.matmul(in_sensitivity.T, np.ones((numOfImages, 1))) / numOfImages
+    out_sensitivity = np.matmul(in_sensitivity, weight.T)
     # end answer
 
     return weight_grad, bias_grad, out_sensitivity

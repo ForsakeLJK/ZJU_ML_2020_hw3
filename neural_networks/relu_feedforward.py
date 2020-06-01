@@ -9,8 +9,8 @@ def relu_feedforward(in_):
       outputs:
               out : the output, shape: same as in
     '''
-    # TODO
 
     # begin answer
+    out = np.maximum(in_, 0)
     # end answer
     return out
