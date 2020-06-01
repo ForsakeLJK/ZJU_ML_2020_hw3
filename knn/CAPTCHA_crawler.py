@@ -2,6 +2,10 @@ import requests
 import random
 import time
 
+'''
+A trivial crawler to fetch CAPTCHA images
+'''
+
 cnt = 0
 num = 500
 
