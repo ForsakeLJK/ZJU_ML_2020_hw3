@@ -24,7 +24,7 @@ def kmeans(x, k):
 	MAX_ITER = 1000
 
 	p = x.shape[1]
-	iter_ctrs = []
+	iter_ctrs = np.zeros((1, k, p))
 	ctrs = np.zeros((k, p))
 	# labels for N samples
 	idx = np.zeros(N, dtype=np.int64)
@@ -32,6 +32,11 @@ def kmeans(x, k):
 	# choose k centroids randomly
 	randCentroidIdx = np.array(random.sample(range(N), k))
 	ctrs = x[randCentroidIdx]
+	# iter_ctrs[0] = ctrs
+
+	# print(iter_ctrs.shape)
+
+	# print(ctrs)
 
 	for i in range(MAX_ITER):
 		# dist[i, j] denotes the distance between center i and sample j
@@ -57,11 +62,16 @@ def kmeans(x, k):
 			# mean of each col
 			ctrs[m] = np.mean(x[thisClusterIndex], axis=0)
 		
-		iter_ctrs.append(ctrs)
-	
-	iter_ctrs = np.array(iter_ctrs)
+		if i == 0:
+			iter_ctrs[0] = ctrs
+		else:
+			iter_ctrs = np.append(iter_ctrs, np.array([ctrs]), axis=0)
+		# print(ctrs)
 
-	# print("iterations: {}".format(iter_ctrs.shape[0]))
 	# end answer
+	# iter_ctrs = np.append(iter_ctrs, np.array([ctrs]), axis=0)
+	# print(iter_ctrs.shape)
+
+	# print("iteration: {}".format(iter_ctrs.shape[0]))
 
 	return idx, ctrs, iter_ctrs
